@@ -11,7 +11,7 @@ export class PostsService {
     private http: PostsHttpService
   ) { }
 
-  retrievedPosts: Post[] = [];
+  cachedPosts: Post[] = [];
 
   getAll(): Observable<Post[]> {
     return this.http.getAllPosts().pipe(
@@ -20,7 +20,7 @@ export class PostsService {
   }
 
   getSingle(postId: number): Observable<Post> {
-    console.log(`Searching for post with id: ${postId} in cache: `, this.retrievedPosts);
+    console.log(`Searching for post with id: ${postId} in cache: `, this.cachedPosts);
     let output: Observable<Post>;
 
     if (this.isPostCached(postId)) {
@@ -50,7 +50,7 @@ export class PostsService {
 
   private addNewPost(newPost: any): void {
     if (!this.isPostCached(newPost)) {
-      this.retrievedPosts.push(newPost);
+      this.cachedPosts.push(newPost);
     }
   }
 
@@ -67,6 +67,6 @@ export class PostsService {
   }
 
   private getCachedPost(postId: number): Post {
-    return this.retrievedPosts.find(post => post.id === postId);
+    return this.cachedPosts.find(post => post.id === postId);
   }
 }
