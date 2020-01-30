@@ -4,10 +4,12 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
-    "test": "ng test",
+    "build": "ng build --prod",
+    "test": "ng test --browsers=ChromeHeadless --code-coverage=false --source-map=true",
+    "coverage-report": "ng test --browsers=ChromeHeadless --code-coverage=true --source-map=false",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "CI-check": "npm run lint && npm run coverage-report && npm run build"
   },
   "private": true,
   "dependencies": {
