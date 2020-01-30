@@ -6,7 +6,7 @@
     "start": "ng serve",
     "build": "ng build --prod",
     "test": "ng test --browsers=ChromeHeadless --code-coverage=false --source-map=true",
-    "coverage-report": "ng test --browsers=ChromeHeadless --code-coverage=true --source-map=false",
+    "coverage-report": "ng test --browsers=ChromeHeadless --code-coverage=true --source-map=false --watch=false",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "CI-check": "npm run lint && npm run coverage-report && npm run build"

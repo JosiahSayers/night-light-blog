@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { PostsHttpService } from './posts-http.service';
 import { Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { Post } from '../../models/Post.model';
+import { Post } from '../../models/post.model';
 
 @Injectable()
 export class PostsService {
