@@ -5,10 +5,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedServicesModule } from './shared/services/shared-services.module';
+import { PostComponent } from './post/post.component';
+import { SpinnerComponent } from './shared/components/spinner/spinner.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PostComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,

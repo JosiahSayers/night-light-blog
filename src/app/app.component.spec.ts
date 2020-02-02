@@ -4,6 +4,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { AppComponent } from './app.component';
 import { PostsService } from './shared/services/posts/posts.service';
 import { PostsHttpService } from './shared/services/posts/posts-http.service';
+import { LoggerService } from './shared/services/logger/logger.service';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -17,7 +18,8 @@ describe('AppComponent', () => {
       ],
       providers: [
         PostsService,
-        PostsHttpService
+        PostsHttpService,
+        LoggerService
       ]
     }).compileComponents();
   }));
@@ -28,16 +30,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'night-light-blog'`, () => {
+  it(`should have as title 'Night Light'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('night-light-blog');
+    expect(app.title).toEqual('Night Light');
   });
 
   it('should render title in a h1 tag', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to night-light-blog!');
+    expect(compiled.querySelector('h1').textContent).toContain('Welcome to Night Light!');
   });
 });
