@@ -2,6 +2,7 @@ import { Type } from '@angular/core';
 import { Stubbed } from '../typing/stubbed';
 import { AugmentedSpy } from '../typing/spied';
 import { Observable } from 'rxjs';
+import { jasmine } from 'jasmine-core';
 
 export function stubMethods<T>(spiedClass: Type<T>, options: StubOptions<T> = {}) {
   const methodNames = getMethodNames(spiedClass);

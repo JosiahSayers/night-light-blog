@@ -15,6 +15,8 @@ export class PostComponent implements OnInit {
   postId: number;
   post: Post;
   author: WordPressUser;
+  categories;
+  tags;
   canRenderPost = false;
 
   constructor(
