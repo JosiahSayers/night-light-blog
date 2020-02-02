@@ -1,3 +1,5 @@
+import { LoggerConfig, LogLevel } from '../app/shared/services/logger/logger-config';
+
 const WORDPRESS_BASE_URL = 'https://demo.wp-api.org/wp-json';
 
 const WORDPRESS = {
@@ -10,6 +12,12 @@ const WORDPRESS = {
   }
 };
 
+const LOGGER_CONFIG: LoggerConfig = {
+  consoleLogLevel: LogLevel.ERROR,
+  apiLogLevel: LogLevel.ERROR
+};
+
 export const BaseEnvironment = {
-  WORDPRESS
+  WORDPRESS,
+  LOGGER_CONFIG
 };

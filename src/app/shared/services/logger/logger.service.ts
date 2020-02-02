@@ -1,13 +1,14 @@
 // tslint:disable:no-console
 
 import { Injectable } from '@angular/core';
-import { LoggerConfig, LogLevel, LogLevelMap } from './logger-config';
+import { LogLevel, LogLevelMap } from './logger-config';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from '../../../../environments/environment';
 
 @Injectable()
 export class LoggerService {
 
-  config: LoggerConfig;
+  config = environment.LOGGER_CONFIG;
 
   constructor(private http: HttpClient) { }
 
