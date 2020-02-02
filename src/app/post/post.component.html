@@ -9,7 +9,7 @@
 
 <h1>Author</h1>
 <app-spinner *ngIf="!author"></app-spinner>
-<pre>{{ author | json }}</pre>
+<app-author [author]="author"></app-author>
 
 <h1>Categories</h1>
 <app-spinner *ngIf="!categories"></app-spinner>
