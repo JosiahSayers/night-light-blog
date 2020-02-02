@@ -3,6 +3,10 @@
   "rules": {
     "array-type": false,
     "arrow-parens": false,
+    "ban": [
+      true,
+      "fdescribe"
+    ],
     "deprecation": {
       "severity": "warn"
     },
