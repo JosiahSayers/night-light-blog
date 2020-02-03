@@ -1,12 +1,15 @@
 <h1>Post</h1>
 <app-spinner *ngIf="!post"></app-spinner>
-<pre>{{ post | json }}</pre>
+<section *ngIf="post" id="post-content">
+  <h1 id="title">{{ post.title.rendered }}</h1>
+  <div [innerHTML]="post.content.rendered"></div>
+</section>
 
 <br>
 
 <h1>Author</h1>
 <app-spinner *ngIf="!author"></app-spinner>
-<pre>{{ author | json }}</pre>
+<app-author [author]="author"></app-author>
 
 <h1>Categories</h1>
 <app-spinner *ngIf="!categories"></app-spinner>
