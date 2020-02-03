@@ -73,13 +73,13 @@ export class PostsService {
 }
 
 export interface WordpressPostOptions {
-  order: {
-    ascending: boolean;
-    orderBy: 'date' | 'relevance' | 'id' | 'include' | 'title' | 'slug';
+  order?: {
+    ascending?: boolean;
+    orderBy?: 'date' | 'relevance' | 'id' | 'include' | 'title' | 'slug';
   };
-  pagination: {
-    page: number;
-    resultsPerPage: number;
-    offset: number;
+  pagination?: {
+    page?: number;
+    resultsPerPage?: number;
+    offset?: number;
   }
 }

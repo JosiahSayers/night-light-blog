@@ -34,7 +34,7 @@ export class PostsHttpService {
         url.addQueryParam('order', 'desc');
       }
 
-      if(options.order.orderBy) {
+      if (options.order.orderBy) {
         url.addQueryParam('orderby', options.order.orderBy);
       }
     }
@@ -49,7 +49,7 @@ export class PostsHttpService {
       }
 
       if (options.pagination.resultsPerPage) {
-        url.addQueryParam('offset', options.pagination.offset);
+        url.addQueryParam('offset', options.pagination.resultsPerPage);
       }
     }
 
