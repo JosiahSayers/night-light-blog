@@ -33,9 +33,9 @@ export class PostsService {
     return output;
   }
 
-  get(options: WordpressPostOptions): Observable<Post>[] {
-    return this.http.
-  }
+  // get(options: WordpressPostOptions): Observable<Post>[] {
+  //   return this.http.
+  // }
 
   private addToCache(newData: object | object[]): void {
     if (Array.isArray(newData)) {

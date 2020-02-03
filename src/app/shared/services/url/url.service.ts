@@ -1,8 +1,12 @@
 export class UrlService {
 
-  parameters: Parameter[] = [];
+  private parameters: Parameter[] = [];
 
-  constructor(private baseUrl: string) {}
+  constructor(private baseUrl: string) {
+    if (baseUrl[baseUrl.length - 1] === '/') {
+      this.baseUrl = baseUrl.slice(0, baseUrl.length - 1);
+    }
+  }
 
   addQueryParam(name: string | number, value: string | number): void {
     const paramName = typeof name === 'string' ? name : `${name}`;
@@ -11,14 +15,14 @@ export class UrlService {
     if (this.doesParameterAlreadyExist(paramName)) {
       this.removeQueryParam(paramName);
     }
-  
+
     this.parameters.push({ name: paramName, value: paramValue });
   }
 
   removeQueryParam(name: string): void {
-    const indexToRemove = this.doesParameterAlreadyExist(name);
+    const indexToRemove = this.getParameterIndex(name);
 
-    if (indexToRemove) {
+    if (indexToRemove >= 0) {
       this.parameters.splice(indexToRemove, 1);
     }
   }
@@ -27,7 +31,13 @@ export class UrlService {
     return this.baseUrl + this.buildQueryParams();
   }
 
-  private doesParameterAlreadyExist(nameToCheck: string): number {
+  private doesParameterAlreadyExist(nameToCheck: string): boolean {
+    const index = this.getParameterIndex(nameToCheck);
+
+    return index >= 0;
+  }
+
+  private getParameterIndex(nameToCheck: string): number {
     let indexToRemove;
 
     this.parameters.forEach((param, index) => {

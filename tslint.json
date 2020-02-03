@@ -5,7 +5,8 @@
     "arrow-parens": false,
     "ban": [
       true,
-      "fdescribe"
+      "fdescribe",
+      "fit"
     ],
     "deprecation": {
       "severity": "warn"
