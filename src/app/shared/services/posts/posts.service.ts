@@ -33,11 +33,13 @@ export class PostsService {
     return output;
   }
 
-  // get(options: WordpressPostOptions): Observable<Post>[] {
-  //   return this.http.
-  // }
+  get(options: WordpressPostOptions): Observable<Post[]> {
+    return this.http.get(options).pipe(
+      tap(returnValue => this.addToCache(returnValue))
+    );
+  }
 
-  private addToCache(newData: object | object[]): void {
+  private addToCache(newData: Post | Post[]): void {
     if (Array.isArray(newData)) {
       this.addNewPosts(newData);
     } else {
@@ -45,11 +47,11 @@ export class PostsService {
     }
   }
 
-  private addNewPosts(newPosts: object[]): void {
+  private addNewPosts(newPosts: Post[]): void {
     newPosts.forEach(post => this.addNewPost(post));
   }
 
-  private addNewPost(newPost: any): void {
+  private addNewPost(newPost: Post): void {
     if (!this.isPostCached(newPost)) {
       this.cachedPosts.push(newPost);
     }
@@ -81,5 +83,5 @@ export interface WordpressPostOptions {
     page?: number;
     resultsPerPage?: number;
     offset?: number;
-  }
+  };
 }

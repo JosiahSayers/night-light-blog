@@ -19,9 +19,9 @@ export class PostsHttpService {
     return this.http.get<Post>(environment.WORDPRESS.POSTS.GET_SINGLE(postId));
   }
 
-  get(options: WordpressPostOptions): Observable<Post> {
+  get(options: WordpressPostOptions): Observable<Post[]> {
     const url = this.buildUrl(environment.WORDPRESS.POSTS.GET_ALL, options);
-    return this.http.get<Post>(url);
+    return this.http.get<Post[]>(url);
   }
 
   buildUrl(baseUrl: string, options: WordpressPostOptions): string {

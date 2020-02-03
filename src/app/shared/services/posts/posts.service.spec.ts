@@ -82,6 +82,27 @@ describe('PostsService', () => {
       });
     });
   });
+
+  describe('get', () => {
+    it('calls http.get with the passed in options', () => {
+      const httpSpy = spyOn(postsHttpService, 'get').and.returnValue(of([_stubPost({})]));
+      const options = { pagination: { page: 3 }};
+
+      service.get(options).subscribe();
+      expect(httpSpy).toHaveBeenCalledWith(options);
+    });
+
+    it('saves the new posts to cache when the API returns data', (done) => {
+      spyOn(postsHttpService, 'get').and.returnValue(of([_stubPost({})]));
+      const options = { pagination: { page: 3 }};
+
+      service.get(options).subscribe(returnValue => {
+        expect(service.cachedPosts.length).toBe(1);
+        expect(service.cachedPosts[0]).toEqual(_stubPost({}));
+        done();
+      });
+    });
+  });
 });
 
 function _stubPost(params: Partial<Post>): Post {
