@@ -15,9 +15,9 @@ export class AuthorComponent {
   }
 
   get profilePictureSrc(): string {
-    return this.author.avatar_urls['96'] ||
-      this.author.avatar_urls['48'] ||
-      this.author.avatar_urls['24'];
+    return this.author.avatar_urls[96] ||
+      this.author.avatar_urls[48] ||
+      this.author.avatar_urls[24];
   }
 
 }

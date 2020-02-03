@@ -8,9 +8,9 @@ export interface WordPressUser {
   link: string;
   slug: string;
   avatar_urls: {
-    '24': string,
-    '48': string,
-    '96': string
+    '24'?: string,
+    '48'?: string,
+    '96'?: string
   };
   meta: [];
   '_links': {
