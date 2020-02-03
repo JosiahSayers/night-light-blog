@@ -45,6 +45,13 @@ describe('UrlService', () => {
       const queryParams = getQueryParams(service.getCurrentUrl());
       expect(queryParams[0]).toBe('1=1');
     });
+
+    it('creates a comma delimited string if the passed in value is an array', () => {
+      service.addQueryParam('testName', [1, 2, 3, '4', '5']);
+
+      const queryParams = getQueryParams(service.getCurrentUrl());
+      expect(queryParams[0]).toBe('testName=1,2,3,4,5');
+    });
   });
 
   describe('removeQueryParam', () => {

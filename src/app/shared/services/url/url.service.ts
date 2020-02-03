@@ -8,9 +8,9 @@ export class UrlService {
     }
   }
 
-  addQueryParam(name: string | number, value: string | number): void {
+  addQueryParam(name: string | number, value: string | number | (string | number)[]): void {
     const paramName = typeof name === 'string' ? name : `${name}`;
-    const paramValue = typeof value === 'string' ? value : `${value}`;
+    const paramValue = this.parseValue(value);
 
     if (this.doesParameterAlreadyExist(paramName)) {
       this.removeQueryParam(paramName);
@@ -47,6 +47,18 @@ export class UrlService {
     });
 
     return indexToRemove;
+  }
+
+  private parseValue(value: string | number | (string | number)[]): string {
+    let paramValue;
+
+    if (Array.isArray(value)) {
+      paramValue = value.join(',');
+    } else {
+      paramValue = typeof value === 'string' ? value : `${value}`;
+    }
+
+    return paramValue;
   }
 
   private buildQueryParams(): string {

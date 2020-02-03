@@ -84,4 +84,6 @@ export interface WordpressPostOptions {
     resultsPerPage?: number;
     offset?: number;
   };
+  categories?: (number | string)[]; // todo: add unit tests for this field
+  tags?: (number | string)[]; // todo: add unit tests for this field
 }
