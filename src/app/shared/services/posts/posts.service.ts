@@ -20,20 +20,21 @@ export class PostsService {
   }
 
   getSingle(postId: number): Observable<Post> {
-    console.log(`Searching for post with id: ${postId} in cache: `, this.cachedPosts);
     let output: Observable<Post>;
 
     if (this.isPostCached(postId)) {
-      console.log('Post found in cache!');
       output = of(this.getCachedPost(postId));
     } else {
-      console.log('Post not in cache, retrieving from API');
       output = this.http.getPost(postId).pipe(
         tap(returnValue => this.addToCache(returnValue))
       );
     }
 
     return output;
+  }
+
+  get(options: WordpressPostOptions): Observable<Post>[] {
+    return this.http.
   }
 
   private addToCache(newData: object | object[]): void {
@@ -68,5 +69,17 @@ export class PostsService {
 
   private getCachedPost(postId: number): Post {
     return this.cachedPosts.find(post => post.id === postId);
+  }
+}
+
+export interface WordpressPostOptions {
+  order: {
+    ascending: boolean;
+    orderBy: 'date' | 'relevance' | 'id' | 'include' | 'title' | 'slug';
+  };
+  pagination: {
+    page: number;
+    resultsPerPage: number;
+    offset: number;
   }
 }
