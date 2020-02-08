@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PostsService } from './shared/services/posts/posts.service';
 import { LoggerService } from './shared/services/logger/logger.service';
-import { Post } from './shared/models/post.model';
+import { Post } from './shared/models/api-responses/post.model';
 
 @Component({
   selector: 'app-root',
@@ -17,14 +17,5 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.logger.debug('application loaded');
-    // this.posts.getAll().subscribe((posts: Post[]) => {
-    //   this.logger.info(posts);
-    //   const randomIndex = Math.floor(Math.random() * posts.length);
-
-    //   this.posts.getSingle(posts[randomIndex].id).subscribe(post => {
-    //     this.logger.info(post);
-    //     console.log(post);
-    //   });
-    // });
   }
 }

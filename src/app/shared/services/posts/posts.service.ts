@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { PostsHttpService } from './posts-http.service';
 import { Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { Post } from '../../models/post.model';
+import { Post } from '../../models/api-responses/post.model';
 
 @Injectable()
 export class PostsService {
@@ -20,14 +20,11 @@ export class PostsService {
   }
 
   getSingle(postId: number): Observable<Post> {
-    console.log(`Searching for post with id: ${postId} in cache: `, this.cachedPosts);
     let output: Observable<Post>;
 
     if (this.isPostCached(postId)) {
-      console.log('Post found in cache!');
       output = of(this.getCachedPost(postId));
     } else {
-      console.log('Post not in cache, retrieving from API');
       output = this.http.getPost(postId).pipe(
         tap(returnValue => this.addToCache(returnValue))
       );
@@ -36,7 +33,13 @@ export class PostsService {
     return output;
   }
 
-  private addToCache(newData: object | object[]): void {
+  get(options: WordpressPostOptions): Observable<Post[]> {
+    return this.http.get(options).pipe(
+      tap(returnValue => this.addToCache(returnValue))
+    );
+  }
+
+  private addToCache(newData: Post | Post[]): void {
     if (Array.isArray(newData)) {
       this.addNewPosts(newData);
     } else {
@@ -44,11 +47,11 @@ export class PostsService {
     }
   }
 
-  private addNewPosts(newPosts: object[]): void {
+  private addNewPosts(newPosts: Post[]): void {
     newPosts.forEach(post => this.addNewPost(post));
   }
 
-  private addNewPost(newPost: any): void {
+  private addNewPost(newPost: Post): void {
     if (!this.isPostCached(newPost)) {
       this.cachedPosts.push(newPost);
     }
@@ -69,4 +72,18 @@ export class PostsService {
   private getCachedPost(postId: number): Post {
     return this.cachedPosts.find(post => post.id === postId);
   }
+}
+
+export interface WordpressPostOptions {
+  order?: {
+    ascending?: boolean;
+    orderBy?: 'date' | 'relevance' | 'id' | 'include' | 'title' | 'slug';
+  };
+  pagination?: {
+    page?: number;
+    resultsPerPage?: number;
+    offset?: number;
+  };
+  categories?: (number | string)[]; // todo: add unit tests for this field
+  tags?: (number | string)[]; // todo: add unit tests for this field
 }

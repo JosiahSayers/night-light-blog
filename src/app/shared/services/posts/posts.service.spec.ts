@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { PostsService } from './posts.service';
 import { PostsHttpService } from './posts-http.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { Post } from '../../models/post.model';
+import { Post } from '../../models/api-responses/post.model';
 import { of } from 'rxjs';
 
 describe('PostsService', () => {
@@ -76,6 +76,27 @@ describe('PostsService', () => {
       expect(service.cachedPosts.length).toBe(0);
 
       service.getSingle(1).subscribe(returnValue => {
+        expect(service.cachedPosts.length).toBe(1);
+        expect(service.cachedPosts[0]).toEqual(_stubPost({}));
+        done();
+      });
+    });
+  });
+
+  describe('get', () => {
+    it('calls http.get with the passed in options', () => {
+      const httpSpy = spyOn(postsHttpService, 'get').and.returnValue(of([_stubPost({})]));
+      const options = { pagination: { page: 3 }};
+
+      service.get(options).subscribe();
+      expect(httpSpy).toHaveBeenCalledWith(options);
+    });
+
+    it('saves the new posts to cache when the API returns data', (done) => {
+      spyOn(postsHttpService, 'get').and.returnValue(of([_stubPost({})]));
+      const options = { pagination: { page: 3 }};
+
+      service.get(options).subscribe(returnValue => {
         expect(service.cachedPosts.length).toBe(1);
         expect(service.cachedPosts[0]).toEqual(_stubPost({}));
         done();

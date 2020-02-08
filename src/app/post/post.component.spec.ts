@@ -11,6 +11,7 @@ import { PostsHttpService } from '../shared/services/posts/posts-http.service';
 import { UsersHttpService } from '../shared/services/users/users-http.service';
 import { Stubbed } from '../shared/testing/typing/stubbed';
 import { stubMethods } from '../shared/testing/method-stubs/stub-methods';
+import { AuthorComponent } from './author/author.component';
 
 describe('PostComponent', () => {
   let component: PostComponent;
@@ -24,7 +25,8 @@ describe('PostComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         PostComponent,
-        MockComponent(SpinnerComponent)
+        MockComponent(SpinnerComponent),
+        MockComponent(AuthorComponent)
        ],
       providers: [
         {

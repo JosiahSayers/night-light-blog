@@ -1,11 +1,13 @@
 {
   "extends": "tslint:recommended",
   "rules": {
+    "no-shadowed-variable": true,
     "array-type": false,
     "arrow-parens": false,
     "ban": [
       true,
-      "fdescribe"
+      "fdescribe",
+      "fit"
     ],
     "deprecation": {
       "severity": "warn"

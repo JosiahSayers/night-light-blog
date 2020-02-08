@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PostsService } from '../shared/services/posts/posts.service';
 import { UsersService } from '../shared/services/users/users.service';
-import { Post } from '../shared/models/post.model';
-import { WordPressUser } from '../shared/models/wordpress-user.model';
+import { Post } from '../shared/models/api-responses/post.model';
+import { WordPressUser } from '../shared/models/api-responses/wordpress-user.model';
 
 @Component({
   selector: 'app-post',
