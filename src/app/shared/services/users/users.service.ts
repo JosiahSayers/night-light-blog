@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { WordPressUser } from '../../models/wordpress-user.model';
+import { WordPressUser } from '../../models/api-responses/wordpress-user.model';
 import { UsersHttpService } from './users-http.service';
 import { Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';

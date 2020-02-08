@@ -1,4 +1,4 @@
-import { WordPressUser } from '../../models/wordpress-user.model';
+import { WordPressUser } from '../../models/api-responses/wordpress-user.model';
 
 export function _stubUser(params: Partial<WordPressUser>): WordPressUser {
   return {

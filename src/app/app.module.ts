@@ -8,13 +8,15 @@ import { SharedServicesModule } from './shared/services/shared-services.module';
 import { PostComponent } from './post/post.component';
 import { SpinnerComponent } from './shared/components/spinner/spinner.component';
 import { AuthorComponent } from './post/author/author.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PostComponent,
     SpinnerComponent,
-    AuthorComponent
+    AuthorComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

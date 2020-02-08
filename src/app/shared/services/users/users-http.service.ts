@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { WordPressUser } from '../../models/wordpress-user.model';
+import { WordPressUser } from '../../models/api-responses/wordpress-user.model';
 import { Observable } from 'rxjs';
 import { environment } from '../../../../environments/environment';
 

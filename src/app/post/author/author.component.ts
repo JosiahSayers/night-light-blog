@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { WordPressUser } from '../../shared/models/wordpress-user.model';
+import { WordPressUser } from '../../shared/models/api-responses/wordpress-user.model';
 
 @Component({
   selector: 'app-author',
