@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { PostsService } from './posts.service';
 import { PostsHttpService } from './posts-http.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { Post } from '../../models/post.model';
+import { Post } from '../../models/api-responses/post.model';
 import { of } from 'rxjs';
 
 describe('PostsService', () => {

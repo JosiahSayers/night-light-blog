@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../../environments/environment';
-import { Post } from '../../models/post.model';
+import { Post } from '../../models/api-responses/post.model';
 import { WordpressPostOptions } from './posts.service';
 import { UrlService } from '../url/url.service';
 
@@ -49,7 +49,7 @@ export class PostsHttpService {
       }
 
       if (options.pagination.resultsPerPage) {
-        url.addQueryParam('offset', options.pagination.resultsPerPage);
+        url.addQueryParam('per_page', options.pagination.resultsPerPage);
       }
     }
 
